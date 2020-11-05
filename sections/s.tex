@@ -1,0 +1,47 @@
+\entry{Sky light}{
+	The Sky Light captures the distant parts of 
+	your level \ref{Level} and applies that to the scene as 
+	a light. That means the sky's appearance and 
+	its lighting/reflections will match, even if 
+	your sky is coming from atmosphere, or layered 
+	clouds on top of a skybox, or distant mountains. 
+	You can also manually specify a cubemap to use.
+}
+
+\entry{Spot light}{
+	A Spot Light emits light from a single point 
+	in a cone shape. Users are given two cones 
+	to shape the light - the Inner Cone Angle and Outer Cone Angle. 
+	Within the Inner Cone Angle, the light achieves full 
+	brightness. As you go from the extent of the inner 
+	radius to the extents of the Outer Cone Angle, 
+	a falloff takes place, creating a penumbra, or softening 
+	around the Spot Light's disc of illumination. 
+	The Radius of the light defines the length of the cones. 
+	More simply, this will work like a flash light or 
+	stage can light.
+}
+
+\entry{Surface}{
+	More often called smoothing groups, are useful, but not required 
+	to group smooth regions. Consider a cylinder with caps, 
+	such as a soda can. For smooth shading of the sides, 
+	all surface normals must point horizontally away from the center, 
+	while the normals of the caps must point straight up and down. 
+	Rendered as a single, Phong-shaded surface, the crease vertices \ref{Vertex} 
+	would have incorrect normals. Thus, some way of determining where 
+	to cease smoothing is needed to group smooth parts of a mesh \ref{Mesh}, 
+	just as polygons \ref{Polygon} group 3-sided faces \ref{Face}. As an alternative 
+	to providing surfaces/smoothing groups, a mesh may contain other 
+	data for calculating the same data, such as a splitting angle 
+	(polygons with normals above this threshold are either 
+	automatically treated as separate smoothing groups or some 
+	technique such as splitting or chamfering is automatically 
+	applied to the edge between them). Additionally, 
+	very high-resolution meshes are less subject to issues that would 
+	require smoothing groups, as their polygons \ref{Polygon} are so 
+	small as to make the need irrelevant. Further, another alternative 
+	exists in the possibility of simply detaching the surfaces 
+	themselves from the rest of the mesh. Renderers do not attempt to 
+	smooth edges across noncontiguous polygons.
+}
