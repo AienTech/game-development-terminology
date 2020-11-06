@@ -12,14 +12,19 @@
 } 
 
 % A helper command to add images with their sources
-\newcommand{\fig}[2]{
-	\begin{center}
-		\includegraphics[width=5.5cm]{#2}
-		\footnotesize{\textit{Source: #1}}
-	\end{center}
+% first argument is the source address
+% second argument is the name of the source address
+% third argument is the file name
+\newcommand{\fig}[3]{
+	\begin{figure} [H]
+		\centering
+		\includegraphics[width=\linewidth]{#3}
+		\caption[#1]{From~#2\protect\footnotemark}
+	\end{figure}
+	\footnotetext{#1}
 }
 
-\renewcommand{\ref}[1]{\small{(\textit{See~#1})}}
+\renewcommand{\ref}[1]{(\textit{See~#1})}
 
 \newcommand{\contributor}[4]{
 	\textbf{#1}\\
