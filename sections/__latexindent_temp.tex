@@ -1,35 +1,102 @@
-\entry{Material}{
-	A Material is an asset that can be 
-	applied to a mesh \ref{Mesh} to control the visual 
-	look of the scene. At a high level, it is probably 
-	easiest to think of a Material as the "paint" 
-	that is applied to an object.
+\entry{Game Mode}{
+	The GameMode Class is responsible for setting 
+	the rules of the game that is being played. 
+	The rules can include how players join the game, 
+	whether or not a game can be paused, and level 
+	transitions, as well as any game-specific 
+	behavior such as win conditions.
+	
+	You can set the default GameMode in the 
+	Project Settings, but can override it on 
+	a per-Level basis. Regardless of how you 
+	choose to implement the GameMode, there 
+	is always only one GameMode present 
+	per-level. In a multiplayer game, the 
+	GameMode only exists on the server and 
+	the rules are replicated (sent) to each 
+	of the connected clients.
 }
 
-\entry{Mesh}{
-	In 3D computer graphics and solid modeling, a polygon mesh is 
-	a collection of vertices, edges and faces that defines the shape 
-	of a polyhedral object. The faces usually consist of triangles 
-	(triangle mesh), quadrilaterals (quads), or other simple convex 
-	polygons (n-gons), since this simplifies rendering, but may also 
-	be more generally composed of concave polygons, or even polygons 
-	with holes.
-	\fig{https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Dolphin\_triangle\_mesh.png/250px-Dolphin\_triangle\_mesh.png}{Wikipedia}{250px-Dolphin_triangle_mesh.png}
-	A mesh is consisted of 5 components:
-	\fig{https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Mesh\_overview.svg/720px-Mesh\_overview.png}{Wikipedia}{720px-Mesh_overview.png}
-	\begin{itemize}
-		\item Vertices \ref{Vertex}
-		\item Edges \ref{Edge}
-		\item Faces \ref{Face}
-		\item polygons \ref{Polygon}
-		\item Surfaces \ref{Surface}
-		\item Materials \ref{Material}
-		\item UV Coordinates \ref{UV Coordinates}
-	\end{itemize}
+\entry{Game State}{
+	The GameState contains the information 
+	that you want replicated to every client 
+	in a game, or more simply it is 
+	'The State of the Game' for everyone connected.
+
+	It often contains information about 
+	game score, whether a match has started 
+	or not, how many AI \ref{AI} to spawn \ref{Spawn} 
+	based upon the number of players in the world, 
+	and other game specific information.
+	
+	For multiplayer games, there is one instance 
+	of the GameState on each player's machine with 
+	the server's instance being the authoritative 
+	one (or the one that clients get their 
+	updated information from).
 }
 
-\entry{Meshing Pass}{
-	Replacing the basic meshes \ref{Mesh} or primitives from 
-	the prototype phase \ref{Prototype Pass} with near final 
-	asset and applying basic materials \ref{Material}.
+\entry{Gameplay Framework}{
+	Contains the information about core systems, 
+	such as game rules, player input and controls, 
+	cameras, and user interfaces.
+
+	To show how the different pieces of 
+	game framework interlock, here is a simple example. 
+	Imagine a simple concept for a game, where a 
+	rabbit races a snail. The base of the game 
+	framework is the GameMode \ref{Game Mode}. 
+	The GameMode sets the rules for the game, 
+	like the rule that whichever player crosses 
+	the finish line first is the winner. 
+	It also handles spawning the players.
+
+	A player is set up in a \texttt{PlayerController} \ref{Controller}, 
+	which can possess a Pawn \ref{Pawn}. The Pawn is the 
+	physical representation of a player in the game, 
+	while the Controller possesses the Pawn and can set 
+	rules for its behavior. In our example, there would 
+	be two Pawns, one for the snail and one for the rabbit. 
+	The rabbit would actually be a Character \ref{Character}, 
+	a special subclass of Pawn which has built-in movement 
+	functionality including running and jumping. 
+	The snail, on the other hand, has a different style of 
+	movement, so it could extend directly from the Pawn class.
+
+	A Pawn can contain its own rules for movement 
+	and other game logic, but that functionality can 
+	also be included in a Controller. A Controller 
+	can either be a \texttt{PlayerController} taking input from a 
+	human player or an \texttt{AIController} with automated control 
+	by the computer. In this example, the player would be 
+	controlling the snail, so the snail Pawn would be possessed 
+	by a \texttt{PlayerController}. The rabbit would be controlled 
+	by AI \ref{AI}, with rules for when it should stop, sprint, or 
+	nap all being set up in an \texttt{AIController} which possesses 
+	the rabbit Character. Only human players care about the 
+	view provided by a Camera \ref{Camera}, so only one \texttt{CameraComponent} 
+	in the snail Pawn would be used by the \texttt{PlayerCamera}.
+
+	During gameplay, input from the player would move the snail around the 
+	map, while the HUD \ref{HUD} was overlaid on the 
+	view provided by the Camera, showing information 
+	about who was currently in first place, and the 
+	race time that had elapsed.
+}
+
+\entry{Generator}{
+	Within the Environmental Query System (EQS), 
+	Generators are used to produce the locations 
+	or Actors \ref{Actor} (referred to as Items) 
+	that will be tested and weighted, with the 
+	highest weight location or Actor being returned 
+	to the Behavior Tree. There are different types 
+	of Generators that you can use to retrieve 
+	information and they can be created either 
+	in Blueprint or C++. 
+}
+
+\entry{Gizmo}{
+	3D gizmos help you move, rotate, or scale a set of objects along a 3D axis or plane.
+	\fig{https://help.autodesk.com/cloudhelp/2020/ENU/AutoCAD-Core/images/GUID-A67A1239-F373-43DF-A434-0763DC2930AE.png}{Autodesk}{gizmo-autodesk.png}
 }

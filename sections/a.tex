@@ -1,9 +1,50 @@
 \entry{Actor}{
 	An Actor is any object that can be 
-	placed into a level \ref{Level}. Actors are a generic 
-	Class that support 3D transformations such as 
+	placed into a level \ref{Level}. Actors are 
+	a generic Class that support 3D transformations such as 
 	translation, rotation, and scale. 
 	Actors can be created (spawned) and destroyed 
 	through gameplay code (C++ or Blueprints \ref{Blueprint}). 
 	In C++, AActor is the base class of all Actors.
+}
+
+\entry{AI}{
+	Artificial intelligence (AI), 
+	is intelligence demonstrated by machines, 
+	unlike the natural intelligence displayed 
+	by humans and animals.
+
+	Creating Artificial Intelligence (AI) 
+	for characters \ref{Character} or other entities in your 
+	projects \ref{Project} in Unreal Engine 4 
+	(UE4) is accomplished through multiple 
+	systems working together. From a Behavior Tree  \ref{Behavior Tree}
+	that is branching between different decisions or 
+	actions, running a query to get information about 
+	the environment through the 
+	Environment Query System (EQS) \ref{Environment Query System (EQS)}, 
+	to using the AI Perception system \ref{AI Perception System} to retrieve sensory 
+	information such as sight, sound, or damage information. 
+	all of these systems play a key role in creating believable AI 
+	in your projects. Additionally, all of these tools 
+	can be debugged with the AI Debugging tools, 
+	giving you insight into what the AI is 
+	thinking or doing at any given moment. 
+}
+
+\entry{AI Perception System}{
+	In addition to Behavior Trees \ref{Behavior Tree}
+	which can be used to make decisions on which logic 
+	to execute, and the 
+	Environmental Query System (EQS) \ref{Environment Query System (EQS)} 
+	used to retrieve information about the environment; 
+	another tool you can use within the AI framework which 
+	provides sensory data for an AI \ref{AI} is the AI Perception System. 
+	This provides a way for Pawns \ref{Pawn} to receive data 
+	from the environment, such as where 
+	noises are coming from, if the AI was 
+	damaged by something, or if the AI sees 
+	something. This is accomplished with the 
+	AI Perception Component that acts as a 
+	stimuli listener and gathers registered Stimuli Sources.
 }

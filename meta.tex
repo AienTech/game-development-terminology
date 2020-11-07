@@ -1,28 +1,23 @@
-\usepackage[top=3.5cm,bottom=3.5cm,left=3.7cm,right=4.7cm,columnsep=30pt]{geometry} % Document margins and spacings
-
+\usepackage[columnsep=20pt]{geometry} % Document margins and spacings
 \usepackage[utf8]{inputenc} % Required for inputting international characters
 \usepackage[T1]{fontenc} % Output font encoding for international characters
-
-\usepackage{palatino} % Use the Palatino font
-
 \usepackage{graphicx}
 \usepackage{float}
-
 \usepackage{microtype} % Improves spacing
-
 \usepackage{multicol} % Required for splitting text into multiple columns
-
 \usepackage[bf,sf,center]{titlesec} % Required for modifying section titles - bold, sans-serif, centered
-
 \usepackage{fancyhdr} % Required for modifying headers and footers
-
-
-
 \usepackage[svgnames]{xcolor} % Required for colour specification
-
-\newcommand*{\plogo}{\fbox{GitHub}} % Generic dummy publisher logo
-
-\usepackage[utf8]{inputenc} % Required for inputting international characters
-\usepackage[T1]{fontenc} % Output font encoding for international characters
-\usepackage{PTSerif} % Use the Paratype Serif font
+\usepackage{PTSerif}
 \usepackage{tabularx}
+
+\setlength{\parindent}{0cm}
+\setlength{\parskip}{2ex}
+\fancyhead[L]{\textsf{\rightmark}} % Top left header
+\fancyhead[R]{\textsf{\leftmark}} % Top right header
+\fancyfoot[C]{\textbf{\textsf{\thepage}}} % Bottom center footer
+\pagestyle{fancy} % Use the custom headers and footers throughout the document
+\graphicspath{ {./images/} }
+
+\let\oldsection\section
+\renewcommand\section{\clearpage\oldsection}

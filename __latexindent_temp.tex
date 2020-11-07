@@ -1,34 +1,23 @@
-\renewcommand{\headrulewidth}{1.4pt} % Rule under the header
-\renewcommand{\footrulewidth}{1.4pt} % Rule under the footer
+\usepackage[columnsep=20pt]{geometry} % Document margins and spacings
+\usepackage[utf8]{inputenc} % Required for inputting international characters
+\usepackage[T1]{fontenc} % Output font encoding for international characters
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{microtype} % Improves spacing
+\usepackage{multicol} % Required for splitting text into multiple columns
+\usepackage[bf,sf,center]{titlesec} % Required for modifying section titles - bold, sans-serif, centered
+\usepackage{fancyhdr} % Required for modifying headers and footers
+\usepackage[svgnames]{xcolor} % Required for colour specification
+\usepackage{PTSerif}
+\usepackage{tabularx}
 
-% Defines the command to print each word on the page, 
-% \markboth{}{} prints the first word on the page 
-% in the top left header and the last word in the top right
-\newcommand{\entry}[2]{
-	\markboth{#1}{#1}
-	\textbf{#1}
-	\label{#1} $\bullet$\ 
-	{#2}
-} 
+\setlength{\parindent}{0cm}
+\setlength{\parskip}{2ex}
+\fancyhead[L]{\textsf{\rightmark}} % Top left header
+\fancyhead[R]{\textsf{\leftmark}} % Top right header
+\fancyfoot[C]{\textbf{\textsf{\thepage}}} % Bottom center footer
+\pagestyle{fancy} % Use the custom headers and footers throughout the document
+\graphicspath{ {./images/} }
 
-% A helper command to add images with their sources
-% first argument is the source address
-% second argument is the name of the source address
-% third argument is the file name
-\newcommand{\fig}[3]{
-	\begin{figure} [H]
-		\centering
-		\includegraphics[width=\linewidth]{#3}
-		\caption[#1]{From~#2\protect\footnotemark}
-	\end{figure}
-	\footnotetext{#1}
-}
-
-\renewcommand{\ref}[1]{(\textit{See~#1})}
-
-\newcommand{\contributor}[4]{
-	\textbf{#1}\\
-	\textit{#2}\\
-	\small{github:~#3}\\
-	\small{twitter:~#4}\\
-}
+\let\oldsection\section
+\renewcommand\section{\clearpage\oldsection}
