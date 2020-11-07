@@ -1,3 +1,23 @@
+\entry{Action Mapping}{
+	Action mappings are inputs that only output 
+	execution pins. Triggering these events can 
+	run new lines of blueprint code. In contrast
+	to Axis Mappings \ref{Axis Mapping} they are
+	executed only once and thus are simpler
+	in the context of the key definition.
+
+	Actions that are bound only to a pressed 
+	or released event will fire every time any 
+	key that is mapped to it is pressed/released. 
+	However, in the case of Paired Actions 
+	(actions that have both a pressed and a released 
+	function bound to them) we consider the first key 
+	to be pressed to have captured the action. 
+	Once a key has captured the action the other 
+	bound keys’ press and release events will be 
+	ignored until the capturing key has been released.
+}
+
 \entry{Actor}{
 	An Actor is any object that can be 
 	placed into a level \ref{Level}. Actors are 
@@ -47,4 +67,18 @@
 	something. This is accomplished with the 
 	AI Perception Component that acts as a 
 	stimuli listener and gathers registered Stimuli Sources.
+}
+
+\entry{Axis Mapping}{
+	In general, Axis Mappings allow us to map keyboard, 
+	mouse, and controller inputs to a "friendly name" 
+	that can later be bound to game behavior, such as movement. 
+	Axis Mappings are continuously polled, allowing for seamless 
+	movement transitions and smooth game behavior. 
+	Hardware axes (such as controller joysticks) provide 
+	degrees of input, rather than discrete input 
+	(1 - pressed vs. 0 - not pressed). While controller joystick 
+	input methods are effective at providing scalable movement 
+	input, Axis Mappings can also map common movement keys, 
+	like WASD to continuously-polled game behavior.
 }

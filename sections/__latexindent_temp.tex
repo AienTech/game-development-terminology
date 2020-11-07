@@ -1,102 +1,84 @@
-\entry{Game Mode}{
-	The GameMode Class is responsible for setting 
-	the rules of the game that is being played. 
-	The rules can include how players join the game, 
-	whether or not a game can be paused, and level 
-	transitions, as well as any game-specific 
-	behavior such as win conditions.
-	
-	You can set the default GameMode in the 
-	Project Settings, but can override it on 
-	a per-Level basis. Regardless of how you 
-	choose to implement the GameMode, there 
-	is always only one GameMode present 
-	per-level. In a multiplayer game, the 
-	GameMode only exists on the server and 
-	the rules are replicated (sent) to each 
-	of the connected clients.
+\entry{Action Mapping}{
+	Action mappings are inputs that only output 
+	execution pins. Triggering these events can 
+	run new lines of blueprint code. In contrast
+	to Axis Mappings \ref{Axis Mapping} they are
+	executed only once and thus are simpler
+	in the context of the key definition.
+
+	Actions that are bound only to a pressed 
+	or released event will fire every time any 
+	key that is mapped to it is pressed/released. 
+	However, in the case of Paired Actions 
+	(actions that have both a pressed and a released 
+	function bound to them) we consider the first key 
+	to be pressed to have captured the action. 
+	Once a key has captured the action the other 
+	bound keys’ press and release events will be 
+	ignored until the capturing key has been released.
 }
 
-\entry{Game State}{
-	The GameState contains the information 
-	that you want replicated to every client 
-	in a game, or more simply it is 
-	'The State of the Game' for everyone connected.
-
-	It often contains information about 
-	game score, whether a match has started 
-	or not, how many AI \ref{AI} to spawn \ref{Spawn} 
-	based upon the number of players in the world, 
-	and other game specific information.
-	
-	For multiplayer games, there is one instance 
-	of the GameState on each player's machine with 
-	the server's instance being the authoritative 
-	one (or the one that clients get their 
-	updated information from).
+\entry{Actor}{
+	An Actor is any object that can be 
+	placed into a level \ref{Level}. Actors are 
+	a generic Class that support 3D transformations such as 
+	translation, rotation, and scale. 
+	Actors can be created (spawned) and destroyed 
+	through gameplay code (C++ or Blueprints \ref{Blueprint}). 
+	In C++, AActor is the base class of all Actors.
 }
 
-\entry{Gameplay Framework}{
-	Contains the information about core systems, 
-	such as game rules, player input and controls, 
-	cameras, and user interfaces.
+\entry{AI}{
+	Artificial intelligence (AI), 
+	is intelligence demonstrated by machines, 
+	unlike the natural intelligence displayed 
+	by humans and animals.
 
-	To show how the different pieces of 
-	game framework interlock, here is a simple example. 
-	Imagine a simple concept for a game, where a 
-	rabbit races a snail. The base of the game 
-	framework is the GameMode \ref{Game Mode}. 
-	The GameMode sets the rules for the game, 
-	like the rule that whichever player crosses 
-	the finish line first is the winner. 
-	It also handles spawning the players.
-
-	A player is set up in a \texttt{PlayerController} \ref{Controller}, 
-	which can possess a Pawn \ref{Pawn}. The Pawn is the 
-	physical representation of a player in the game, 
-	while the Controller possesses the Pawn and can set 
-	rules for its behavior. In our example, there would 
-	be two Pawns, one for the snail and one for the rabbit. 
-	The rabbit would actually be a Character \ref{Character}, 
-	a special subclass of Pawn which has built-in movement 
-	functionality including running and jumping. 
-	The snail, on the other hand, has a different style of 
-	movement, so it could extend directly from the Pawn class.
-
-	A Pawn can contain its own rules for movement 
-	and other game logic, but that functionality can 
-	also be included in a Controller. A Controller 
-	can either be a \texttt{PlayerController} taking input from a 
-	human player or an \texttt{AIController} with automated control 
-	by the computer. In this example, the player would be 
-	controlling the snail, so the snail Pawn would be possessed 
-	by a \texttt{PlayerController}. The rabbit would be controlled 
-	by AI \ref{AI}, with rules for when it should stop, sprint, or 
-	nap all being set up in an \texttt{AIController} which possesses 
-	the rabbit Character. Only human players care about the 
-	view provided by a Camera \ref{Camera}, so only one \texttt{CameraComponent} 
-	in the snail Pawn would be used by the \texttt{PlayerCamera}.
-
-	During gameplay, input from the player would move the snail around the 
-	map, while the HUD \ref{HUD} was overlaid on the 
-	view provided by the Camera, showing information 
-	about who was currently in first place, and the 
-	race time that had elapsed.
+	Creating Artificial Intelligence (AI) 
+	for characters \ref{Character} or other entities in your 
+	projects \ref{Project} in Unreal Engine 4 
+	(UE4) is accomplished through multiple 
+	systems working together. From a Behavior Tree  \ref{Behavior Tree}
+	that is branching between different decisions or 
+	actions, running a query to get information about 
+	the environment through the 
+	Environment Query System (EQS) \ref{Environment Query System (EQS)}, 
+	to using the AI Perception system \ref{AI Perception System} to retrieve sensory 
+	information such as sight, sound, or damage information. 
+	all of these systems play a key role in creating believable AI 
+	in your projects. Additionally, all of these tools 
+	can be debugged with the AI Debugging tools, 
+	giving you insight into what the AI is 
+	thinking or doing at any given moment. 
 }
 
-\entry{Generator}{
-	Within the Environmental Query System (EQS), 
-	Generators are used to produce the locations 
-	or Actors \ref{Actor} (referred to as Items) 
-	that will be tested and weighted, with the 
-	highest weight location or Actor being returned 
-	to the Behavior Tree. There are different types 
-	of Generators that you can use to retrieve 
-	information and they can be created either 
-	in Blueprint or C++. 
+\entry{AI Perception System}{
+	In addition to Behavior Trees \ref{Behavior Tree}
+	which can be used to make decisions on which logic 
+	to execute, and the 
+	Environmental Query System (EQS) \ref{Environment Query System (EQS)} 
+	used to retrieve information about the environment; 
+	another tool you can use within the AI framework which 
+	provides sensory data for an AI \ref{AI} is the AI Perception System. 
+	This provides a way for Pawns \ref{Pawn} to receive data 
+	from the environment, such as where 
+	noises are coming from, if the AI was 
+	damaged by something, or if the AI sees 
+	something. This is accomplished with the 
+	AI Perception Component that acts as a 
+	stimuli listener and gathers registered Stimuli Sources.
 }
 
-\entry{Gizmo}{
-	3D gizmos help you move, rotate, or scale a set of objects along a 3D axis or plane.
-	\fig{https://help.autodesk.com/cloudhelp/2020/ENU/AutoCAD-Core/images/GUID-A67A1239-F373-43DF-A434-0763DC2930AE.png}{Autodesk}{gizmo-autodesk.png}
+\entry{Axis Mapping}{
+	In general, Axis Mappings allow us to map keyboard, 
+	mouse, and controller inputs to a "friendly name" 
+	that can later be bound to game behavior, such as movement. 
+	Axis Mappings are continuously polled, allowing for seamless 
+	movement transitions and smooth game behavior. 
+	Hardware axes (such as controller joysticks) provide 
+	degrees of input, rather than discrete input 
+	(1 - pressed vs. 0 - not pressed). While controller joystick 
+	input methods are effective at providing scalable movement 
+	input, Axis Mappings can also map common movement keys, 
+	like WASD to continuously-polled game behavior.
 }
