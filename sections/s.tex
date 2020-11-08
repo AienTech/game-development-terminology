@@ -54,3 +54,29 @@
 	themselves from the rest of the mesh. Renderers do not attempt to 
 	smooth edges across noncontiguous polygons.
 }
+
+\entry{Switch Node}{
+	A switch node reads in a data input, 
+	and based on the value of that input, 
+	sends the execution flow out of the 
+	matching (or optional default) execution 
+	output. There are several types of 
+	switches available: Int, String, Name, and Enum.
+
+	In general, switches have an execution 
+	input, and a data input for the type of 
+	data they evaluate. The outputs are all 
+	execution outputs. Enum switches automatically 
+	generate the output execution pins from the 
+	Enum's properties, while Int, String, 
+	and Name switches have customizable 
+	output execution pins.
+
+	There are different nodes than can help you with
+	switching logic:
+
+	\begin{itemize}
+		\item Branch \ref{Branch}
+		\item Gate \ref{Gate}
+	\end{itemize}
+}
