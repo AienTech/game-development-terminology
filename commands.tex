@@ -4,11 +4,15 @@
 % Defines the command to print each word on the page, 
 % \markboth{}{} prints the first word on the page 
 % in the top left header and the last word in the top right
+
+
+\newcounter{EntryCounter}
 \newcommand{\entry}[2]{
 	\markboth{#1}{#1}
 	\textbf{#1}
 	\label{#1} $\bullet$\ 
 	{#2}
+	\refstepcounter{EntryCounter}
 } 
 
 % A helper command to add images with their sources
@@ -26,11 +30,13 @@
 
 \renewcommand{\ref}[1]{(\textit{See~#1})}
 
+\newcounter{ContributorCounter}
 \newcommand{\contributor}[4]{
-	\textbf{#1}\\
-	\textit{#2}\\
-	\small{github:~#3}\\
-	\small{twitter:~#4}\\
+	\small{\textbf{#1}}\\
+	\footnotesize{\textit{#2}}\\
+	\footnotesize{github:~#3}\\
+	\footnotesize{twitter:~#4}\\
+	\refstepcounter{ContributorCounter}
 }
 
 \newcommand*{\plogo}{\fbox{GitHub}}
