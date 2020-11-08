@@ -1,44 +1,22 @@
-\entry{Macro}{
-	Blueprint Macros, or Macros, are essentially the 
-	same as collapsed graphs of nodes. They have an 
-	entry point and exit point designated by tunnel 
-	nodes. Each tunnel can have any number of execution 
-	or data pins which are visible on the macro 
-	node when used in other Blueprints and graphs.
-}
-
-\entry{Material}{
-	A Material is an asset that can be 
-	applied to a mesh \ref{Mesh} to control the visual 
-	look of the scene. At a high level, it is probably 
-	easiest to think of a Material as the "paint" 
-	that is applied to an object.
-}
-
-\entry{Mesh}{
-	In 3D computer graphics and solid modeling, a polygon mesh is 
-	a collection of vertices, edges and faces that defines the shape 
-	of a polyhedral object. The faces usually consist of triangles 
-	(triangle mesh), quadrilaterals (quads), or other simple convex 
-	polygons (n-gons), since this simplifies rendering, but may also 
-	be more generally composed of concave polygons, or even polygons 
-	with holes.
-	\fig{https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Dolphin\_triangle\_mesh.png/250px-Dolphin\_triangle\_mesh.png}{Wikipedia}{250px-Dolphin_triangle_mesh.png}
-	A mesh is consisted of 7 components:
-	\fig{https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Mesh\_overview.svg/720px-Mesh\_overview.png}{Wikipedia}{720px-Mesh_overview.png}
+\entry{Transform}{
+	A transform or transformation is composed of three components:
 	\begin{itemize}
-		\item Vertices \ref{Vertex}
-		\item Edges \ref{Edge}
-		\item Faces \ref{Face}
-		\item polygons \ref{Polygon}
-		\item Surfaces \ref{Surface}
-		\item Materials \ref{Material}
-		\item UV Coordinates \ref{UV Coordinates}
+		\item Scale
+		\item Rotation
+		\item Location
 	\end{itemize}
+
+	\ref{Transforming Actors}
 }
 
-\entry{Meshing Pass}{
-	Replacing the basic meshes \ref{Mesh} or primitives from 
-	the prototype phase \ref{Prototype Pass} with near final 
-	asset and applying basic materials \ref{Material}.
+\entry{Transforming Actors}{
+	Transforming Actors refers to moving, 
+	rotating, or scaling them, which is 
+	an important part of the level-editing 
+	process. There are two basic ways to 
+	transform Actors in the Unreal Editor. 
+	Both ways apply the transformations to 
+	all currently selected Actors.
+
+	\fig{https://docs.unrealengine.com/Images/Engine/UI/LevelEditor/Details/Customizations\\/Transform/Transform\_Properties.webp}{Unreal}{Transform_Properties}
 }
